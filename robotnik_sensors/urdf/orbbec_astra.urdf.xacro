@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <robot name="sensor_orbbec_astra" xmlns:xacro="http://wiki.ros.org/Sensors/OrbbecAstra">
-  <xacro:macro name="sensor_orbbec_astra" params="ns prefix parent *origin">
+  <xacro:macro name="sensor_orbbec_astra" params="prefix prefix_topic:='front_rgbd_camera' parent *origin">
     <joint name="${prefix}_joint" type="fixed">
     	<xacro:insert_block name="origin" />
       <parent link="${parent}"/>
@@ -189,27 +189,27 @@
     </gazebo>
 
     <gazebo>
-      <plugin name="${ns}" filename="librealsense_gazebo_plugin.so">
+      <plugin name="${prefix}" filename="librealsense_gazebo_plugin.so">
         <prefix>${prefix}</prefix>
         <depthUpdateRate>60.0</depthUpdateRate>
         <colorUpdateRate>60.0</colorUpdateRate>
         <infraredUpdateRate>60.0</infraredUpdateRate>
-        <depthTopicName>${ns}/${prefix}/depth/image_raw</depthTopicName>
-        <depthCameraInfoTopicName>${ns}/${prefix}/depth/camera_info</depthCameraInfoTopicName>
-        <colorTopicName>${ns}/${prefix}/color/image_raw</colorTopicName>
-        <colorCameraInfoTopicName>${ns}/${prefix}/color/camera_info</colorCameraInfoTopicName>
-        <infrared1TopicName>${ns}/${prefix}/infra1/image_rect_raw</infrared1TopicName>
-        <infrared1CameraInfoTopicName>${ns}/${prefix}/infra1/camera_info</infrared1CameraInfoTopicName>
-        <infrared2TopicName>${ns}/${prefix}/infra2/image_rect_raw</infrared2TopicName>
-        <infrared2CameraInfoTopicName>${ns}/${prefix}/infra2/camera_info</infrared2CameraInfoTopicName>
-        <colorOpticalframeName>${ns}/${prefix}_rgb_optical_frame</colorOpticalframeName>
-        <depthOpticalframeName>${ns}/${prefix}_depth_optical_frame</depthOpticalframeName>
-        <infrared1OpticalframeName>${ns}/${prefix}_left_ir_optical_frame</infrared1OpticalframeName>
-        <infrared2OpticalframeName>${ns}/${prefix}_right_ir_optical_frame</infrared2OpticalframeName>
+        <depthTopicName>${prefix}/depth/image_raw</depthTopicName>
+        <depthCameraInfoTopicName>${prefix}/depth/camera_info</depthCameraInfoTopicName>
+        <colorTopicName>${prefix}/color/image_raw</colorTopicName>
+        <colorCameraInfoTopicName>${prefix}/color/camera_info</colorCameraInfoTopicName>
+        <infrared1TopicName>${prefix}/infra1/image_rect_raw</infrared1TopicName>
+        <infrared1CameraInfoTopicName>${prefix}/infra1/camera_info</infrared1CameraInfoTopicName>
+        <infrared2TopicName>${prefix}/infra2/image_rect_raw</infrared2TopicName>
+        <infrared2CameraInfoTopicName>${prefix}/infra2/camera_info</infrared2CameraInfoTopicName>
+        <colorOpticalframeName>${prefix}_rgb_optical_frame</colorOpticalframeName>
+        <depthOpticalframeName>${prefix}_depth_optical_frame</depthOpticalframeName>
+        <infrared1OpticalframeName>${prefix}_left_ir_optical_frame</infrared1OpticalframeName>
+        <infrared2OpticalframeName>${prefix}_right_ir_optical_frame</infrared2OpticalframeName>
         <rangeMinDepth>0.4</rangeMinDepth>
         <rangeMaxDepth>6.0</rangeMaxDepth>
         <pointCloud>true</pointCloud>
-        <pointCloudTopicName>${ns}/${prefix}/depth/color/points</pointCloudTopicName>
+        <pointCloudTopicName>${prefix}/depth/color/points</pointCloudTopicName>
         <pointCloudCutoff>0.5</pointCloudCutoff>
       </plugin>
     </gazebo>
